@@ -8,14 +8,16 @@ const Footer = () => {
       <div className="py-2 md:w-11/12 mx-auto">
         <div className="text-neutral-content">
           <div className="footer sm:footer-horizontal py-10">
-            <aside>
-              <Logo></Logo>
+            <div>
+              <div className="mb-2">
+                <Logo></Logo>
+              </div>
               <p>
-                ACME Industries Ltd.
-                <br />
-                Providing reliable tech since 1992
+                Hero Kidz is a small, single-vendor <br />
+                e-commerce web application designed <br /> for selling
+                children's products.
               </p>
-            </aside>
+            </div>
             <nav>
               <h6 className="footer-title">Services</h6>
               <a className="link link-hover">Branding</a>
@@ -38,7 +40,7 @@ const Footer = () => {
             </nav>
           </div>
           <div className="pb-5">
-            <div className="flex items-center justify-between">
+            <div className="flex items-center justify-center flex-wrap md:flex-nowrap md:justify-between gap-2">
               <p>Copyright © {new Date().getFullYear()} - All right reserved</p>
               <div className="flex items-center gap-2">
                 Design & Developed by{" "}

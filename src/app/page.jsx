@@ -1,7 +1,10 @@
+import Banner from "@/components/Home/Banner";
+
 export default function Home() {
   return (
-    <div>
-      <h1>Home page</h1>
+    <div className="min-h-[calc(100vh-370px)]">
+      {/* home  */}
+      <Banner></Banner>
     </div>
   );
 }
