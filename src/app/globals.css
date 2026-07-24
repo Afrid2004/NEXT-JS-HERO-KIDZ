@@ -10,7 +10,7 @@
   default: true;
 
   /* Brand */
-  --color-primary: #78e08f;
+  --color-primary: #62b716;
   --color-secondary: #0a3d62;
   --color-accent: #079992;
 
@@ -20,7 +20,7 @@
   --color-base-300: oklch(92% 0.015 95);
 
   /* Neutral */
-  --color-neutral: oklch(35% 0.01 260);
+  --color-neutral: #101217;
   --color-neutral-content: oklch(96% 0 0);
 
   /* Feedback */
