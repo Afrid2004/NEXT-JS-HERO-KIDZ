@@ -196,6 +196,7 @@ const ProductDetailsPage = async ({ params }) => {
           {product.qna.map((item, idx) => {
             return (
               <div
+                key={idx}
                 className={`collapse collapse-arrow bg-base-200 ${anekBangla.className}`}
               >
                 <input

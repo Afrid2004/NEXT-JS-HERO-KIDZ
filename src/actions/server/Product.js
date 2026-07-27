@@ -13,6 +13,7 @@ export const getAllProducts = async () => {
 
 // get single product
 export const getSingleProduct = async (id) => {
+  await new Promise((resolve) => setTimeout(resolve, 3000));
   if (id.length != 24) {
     return {};
   }
