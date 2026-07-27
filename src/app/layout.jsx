@@ -1,4 +1,4 @@
-import { Poppins } from "next/font/google";
+import { Anek_Bangla, Poppins } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/layouts/Navbar";
 import Footer from "@/components/layouts/Footer";
@@ -6,6 +6,11 @@ import Footer from "@/components/layouts/Footer";
 const poppins = Poppins({
   weight: ["200", "300", "400", "500", "600", "700", "800", "900"],
   subsets: ["latin"],
+});
+
+export const anekBangla = Anek_Bangla({
+  subsets: ["bengali"],
+  weight: ["400", "500", "700", "800"],
 });
 
 export const metadata = {
@@ -20,7 +25,7 @@ export default function RootLayout({ children }) {
         <header>
           <Navbar></Navbar>
         </header>
-        <main className="md:w-11/12 mx-auto">{children}</main>
+        <main className="container">{children}</main>
         <footer>
           <Footer></Footer>
         </footer>

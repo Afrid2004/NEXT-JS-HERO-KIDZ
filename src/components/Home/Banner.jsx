@@ -7,9 +7,9 @@ const Banner = () => {
   return (
     <div>
       <div className="w-full py-10">
-        <div className="flex items-center gap-2">
+        <div className="flex flex-col md:flex-row md:items-center gap-2">
           <div className="flex-1 space-y-8">
-            <h1 className="text-7xl font-bold text-secondary leading-25">
+            <h1 className="text-6xl font-bold text-secondary leading-25">
               Give your child a <br />
               <span className="text-primary">bright future.</span>
             </h1>

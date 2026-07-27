@@ -5,7 +5,7 @@ import { IoLogoGithub } from "react-icons/io";
 const Footer = () => {
   return (
     <div className="bg-neutral">
-      <div className="py-2 md:w-11/12 mx-auto">
+      <div className="py-2 container">
         <div className="text-neutral-content">
           <div className="footer sm:footer-horizontal py-10">
             <div>

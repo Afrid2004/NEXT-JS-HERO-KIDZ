@@ -29,3 +29,14 @@
 }
 
 @custom-variant dark (&:where([data-theme=night], [data-theme=night] *));
+
+@utility container {
+  @apply mx-auto w-full
+        px-4 sm:px-6 lg:px-8
+        max-w-sm
+        sm:max-w-xl
+        md:max-w-3xl
+        lg:max-w-5xl
+        xl:max-w-6xl
+        2xl:max-w-7xl;
+}
