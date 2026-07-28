@@ -6,6 +6,90 @@ import { FaStar, FaCheckCircle } from "react-icons/fa";
 import { IoCartOutline } from "react-icons/io5";
 import { MdBolt } from "react-icons/md";
 
+export async function generateMetadata({ params }) {
+  const { id } = await params;
+  const product = await getSingleProduct(id);
+
+  if (!product?._id) {
+    return {
+      title: "Product Not Found",
+      description: "The requested product could not be found.",
+    };
+  }
+
+  const discountPrice = Math.round(
+    product.price - (product.price * (product.discount ?? 0)) / 100,
+  );
+
+  const shortDescription =
+    product.description?.replace(/\n/g, " ")?.substring(0, 160)?.trim() + "...";
+
+  return {
+    title: product.title,
+    description: shortDescription,
+    keywords: [
+      product.title,
+      product.bangla,
+      "Educational Toy",
+      "Kids Toy",
+      "STEM Toy",
+      "Learning Toy",
+      "Montessori Toy",
+      "Hero Kidz",
+    ],
+
+    alternates: {
+      canonical: `https://next-js-hero-kidz.vercel.app/products/${id}`,
+    },
+
+    openGraph: {
+      title: `${product.title} | Hero Kidz`,
+
+      description: shortDescription,
+
+      url: `https://next-js-hero-kidz.vercel.app/${id}`,
+
+      siteName: "Hero Kidz",
+
+      images: [
+        {
+          url: product.image,
+          width: 1200,
+          height: 630,
+          alt: product.title,
+        },
+      ],
+
+      locale: "en_US",
+
+      type: "website",
+    },
+
+    twitter: {
+      card: "summary_large_image",
+
+      title: `${product.title}`,
+
+      description: shortDescription,
+
+      images: [product.image],
+    },
+
+    robots: {
+      index: true,
+      follow: true,
+    },
+
+    other: {
+      "product:price:amount": discountPrice,
+      "product:price:currency": "BDT",
+      "product:availability": "in stock",
+      "product:brand": "Hero Kidz",
+      "product:rating": product.ratings,
+    },
+  };
+}
+
 const ProductDetailsPage = async ({ params }) => {
   const { id } = await params;
   const product = await getSingleProduct(id);
@@ -34,7 +118,29 @@ const ProductDetailsPage = async ({ params }) => {
           </div>
 
           {/* Thumbnail */}
-          <div className="flex gap-3">
+          <div
+            className="flex flex-wrap gap-3
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          "
+          >
             {[1, 2, 3, 4].map((item) => (
               <div
                 key={item}

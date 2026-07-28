@@ -32,7 +32,7 @@
 
 @utility container {
   @apply mx-auto w-full
-        px-4 sm:px-6 lg:px-8
+        px-4 sm:px-0
         max-w-sm
         sm:max-w-xl
         md:max-w-3xl
