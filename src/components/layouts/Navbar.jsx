@@ -63,15 +63,17 @@ const Navbar = () => {
             <ul className="menu menu-horizontal px-1">{menuLinks}</ul>
           </div>
           <div className="navbar-end">
-            <div className="space-x-2">
-              <Link href={"/cart"}>
-                <button className="btn btn-primary">
-                  <AiOutlineShoppingCart size={25} />
+            <div className="flex items-center gap-2">
+              <Link href="/cart">
+                <button className="btn btn-primary btn-sm md:btn-md">
+                  <AiOutlineShoppingCart size={22} />
                 </button>
               </Link>
-              <Link href={"/login"}>
-                <button className="btn btn-primary btn-outline">
-                  Login
+
+              <Link href="/login">
+                <button className="btn btn-primary btn-outline btn-sm md:btn-md">
+                  <span className="hidden sm:block">Login</span>
+
                   <MdLogin size={20} />
                 </button>
               </Link>
