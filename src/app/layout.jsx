@@ -24,6 +24,10 @@ export const metadata = {
   description:
     "Hero Kidz is your trusted online destination for educational toys, STEM learning kits, Montessori materials, puzzles, and creative learning products designed to inspire children's growth through play.",
 
+  verification: {
+    google: "QXTIgy7YMZky-LhZdLZztg-aRJ8qV64Sup_Ua56x3SA",
+  },
+
   keywords: [
     "Hero Kidz",
     "Educational Toys",
