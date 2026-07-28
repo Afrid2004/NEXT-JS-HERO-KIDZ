@@ -14,7 +14,6 @@ const Breadcrumbs = () => {
         </li>
         {paths.map((path, idx) => {
           const href = "/" + paths.slice(0, idx + 1).join("/");
-          console.log(href);
           const isObjectId = /^[a-f\d]{24}$/i.test(path);
           return isObjectId ? (
             <li key={idx}>Product Details</li>

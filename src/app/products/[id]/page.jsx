@@ -1,5 +1,6 @@
 import { getSingleProduct } from "@/actions/server/Product";
 import { anekBangla } from "@/app/layout";
+import AddToCartBtn from "@/components/Buttons/AddToCartBtn";
 import Breadcrumbs from "@/components/layouts/Breadcrumbs";
 import Image from "next/image";
 import { FaStar, FaCheckCircle } from "react-icons/fa";
@@ -93,7 +94,6 @@ export async function generateMetadata({ params }) {
 const ProductDetailsPage = async ({ params }) => {
   const { id } = await params;
   const product = await getSingleProduct(id);
-  console.log(product);
   const discountPrice = Math.round(
     product.price - (product.price * (product.discount ?? 0)) / 100,
   );
@@ -118,29 +118,7 @@ const ProductDetailsPage = async ({ params }) => {
           </div>
 
           {/* Thumbnail */}
-          <div
-            className="flex flex-wrap gap-3
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          "
-          >
+          <div className="flex flex-wrap gap-3">
             {[1, 2, 3, 4].map((item) => (
               <div
                 key={item}
@@ -222,11 +200,7 @@ const ProductDetailsPage = async ({ params }) => {
 
           {/* Buttons */}
           <div className="grid md:grid-cols-2 gap-4 mt-8">
-            <button className="btn btn-primary btn-lg">
-              <IoCartOutline size={22} />
-              Add To Cart
-            </button>
-
+            <AddToCartBtn product={product}></AddToCartBtn>
             <button className="btn btn-secondary btn-lg text-white">
               <MdBolt size={22} />
               Buy Now

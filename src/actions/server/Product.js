@@ -22,5 +22,5 @@ export const getSingleProduct = async (id) => {
   };
   const productCollection = await dbConnect(collections.PRODUCTS);
   const result = await productCollection.findOne(query);
-  return result || {};
+  return { ...result, _id: result._id.toString() } || {}; //passing as a plain object
 };
