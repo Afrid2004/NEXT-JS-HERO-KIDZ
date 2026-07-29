@@ -2,6 +2,7 @@ import { Anek_Bangla, Poppins } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/layouts/Navbar";
 import Footer from "@/components/layouts/Footer";
+import NextAuthProvider from "@/Provider/NextAuthProvider";
 
 const poppins = Poppins({
   weight: ["200", "300", "400", "500", "600", "700", "800", "900"],
@@ -90,16 +91,18 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" className={`${poppins.className} h-full antialiased`}>
-      <body>
-        <header>
-          <Navbar></Navbar>
-        </header>
-        <main className="container">{children}</main>
-        <footer>
-          <Footer></Footer>
-        </footer>
-      </body>
-    </html>
+    <NextAuthProvider>
+      <html lang="en" className={`${poppins.className} h-full antialiased`}>
+        <body>
+          <header>
+            <Navbar></Navbar>
+          </header>
+          <main className="container">{children}</main>
+          <footer>
+            <Footer></Footer>
+          </footer>
+        </body>
+      </html>
+    </NextAuthProvider>
   );
 }

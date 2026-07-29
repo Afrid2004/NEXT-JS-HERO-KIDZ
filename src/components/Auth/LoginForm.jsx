@@ -30,7 +30,6 @@ const LoginForm = () => {
       setErr("All Fields are required");
       return;
     }
-    console.log(user);
     setLoading(true);
     try {
       // next auth signin

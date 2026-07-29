@@ -4,6 +4,7 @@ import NavLink from "./NavLink";
 import Link from "next/link";
 import { MdLogin } from "react-icons/md";
 import { AiOutlineShoppingCart } from "react-icons/ai";
+import AuthButton from "../Auth/AuthButton";
 
 const Navbar = () => {
   const menuLinks = (
@@ -70,13 +71,7 @@ const Navbar = () => {
                 </button>
               </Link>
 
-              <Link href="/login">
-                <button className="btn btn-primary btn-outline btn-sm md:btn-md">
-                  <span className="hidden sm:block">Login</span>
-
-                  <MdLogin size={20} />
-                </button>
-              </Link>
+              <AuthButton></AuthButton>
             </div>
           </div>
         </div>
