@@ -12,7 +12,7 @@ const AddToCartBtn = ({ product }) => {
       alert(product._id);
     } else {
       // used callback url to redirect user previous page after logged in
-      router.push(`/login?callbcakurl=${path}`);
+      router.push(`/login?callbackurl=${path}`);
     }
   };
   return (

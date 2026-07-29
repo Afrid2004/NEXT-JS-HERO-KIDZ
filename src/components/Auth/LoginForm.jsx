@@ -1,11 +1,14 @@
 "use client";
 import { signIn } from "next-auth/react";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import React, { useState } from "react";
-import { FaEye, FaEyeSlash, FaGoogle } from "react-icons/fa";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
+import GoogleButton from "./GoogleButton";
 
 const LoginForm = () => {
+  const params = useSearchParams();
+  const callback = params.get("callbackurl") || "/";
   const [loading, setLoading] = useState(false);
   const router = useRouter();
   const [showPassword, setShowPassword] = useState(false);
@@ -36,9 +39,10 @@ const LoginForm = () => {
       const res = await signIn("credentials", {
         email: user.email,
         password: user.password,
-        redirect: false,
+        // redirect: false,
+        callbackUrl: callback,
       });
-      if (res?.error) {
+      if (!res.ok) {
         setErr("Invalid email or password");
         return;
       }
@@ -130,16 +134,13 @@ const LoginForm = () => {
           <div className="divider my-6">OR</div>
 
           {/* Google Login */}
-          <button className="btn btn-outline w-full rounded-xl">
-            <FaGoogle className="text-red-500" />
-            Continue With Google
-          </button>
+          <GoogleButton></GoogleButton>
 
           {/* Register */}
           <p className="text-center mt-6">
             Don't have an account?
             <Link
-              href="/register"
+              href={`/register?callbackurl=${callback}`}
               className="text-primary hover:underline font-bold ml-2"
             >
               Register

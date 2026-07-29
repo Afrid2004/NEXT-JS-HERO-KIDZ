@@ -3,6 +3,7 @@ import { PostUser } from "@/actions/server/Auth";
 import Link from "next/link";
 import React, { useState } from "react";
 import { FaEye, FaEyeSlash, FaGoogle } from "react-icons/fa";
+import GoogleButton from "./GoogleButton";
 
 const RegisterForm = () => {
   const [loading, setLoading] = useState(false);
@@ -192,11 +193,7 @@ const RegisterForm = () => {
             <div className="divider my-6">OR</div>
 
             {/* Google Register */}
-            <button className="btn btn-outline w-full rounded-xl">
-              <FaGoogle className="text-red-500" />
-              Continue With Google
-            </button>
-
+            <GoogleButton></GoogleButton>
             {/* Login Link */}
             <p className="text-center mt-6">
               Already have an account?
