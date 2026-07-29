@@ -69,3 +69,25 @@ export async function PostUser(payload) {
     message: "Failed to create account",
   };
 }
+
+export async function LoginUser(payload) {
+  const { email, password } = payload;
+  if (!email?.trim() || !password?.trim()) {
+    return null;
+  }
+  const userCollection = await dbConnect(collections.USERS);
+  const user = await userCollection.findOne({ email });
+  if (!user) {
+    return null;
+  }
+  const matchPassword = await bcrypt.compare(password, user.password);
+  if (!matchPassword) {
+    return null;
+  }
+  return {
+    id: user._id.toString(),
+    name: user.name,
+    email: user.email,
+    role: user.role,
+  };
+}

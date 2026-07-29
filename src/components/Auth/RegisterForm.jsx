@@ -17,10 +17,6 @@ const RegisterForm = () => {
     confirmpassword: "",
   });
 
-  const handleShowPass = () => {
-    setShow(!show);
-  };
-
   const handleChange = (e) => {
     const { name, value } = e.target;
     setUser((prev) => ({
