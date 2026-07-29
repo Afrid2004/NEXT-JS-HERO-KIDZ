@@ -1,3 +1,4 @@
+import RegisterForm from "@/components/Auth/RegisterForm";
 import Image from "next/image";
 import Link from "next/link";
 import { FaGoogle } from "react-icons/fa";
@@ -28,84 +29,9 @@ const RegisterPage = () => {
             </p>
           </div>
 
-          {/* Register Card */}
-          <div className="max-w-md w-full mx-auto">
-            <div className="bg-base-100 rounded-3xl shadow-xl border border-base-300 p-8">
-              <h2 className="text-3xl font-bold text-secondary">
-                Create an account
-              </h2>
-
-              {/* Name */}
-              <div className="mt-6">
-                <label className="font-semibold mb-2 block">Full Name</label>
-
-                <input
-                  type="text"
-                  placeholder="Enter your name"
-                  className="input input-bordered w-full px-4 rounded-xl"
-                />
-              </div>
-
-              {/* Email */}
-              <div className="mt-5">
-                <label className="font-semibold mb-2 block">Email</label>
-
-                <input
-                  type="email"
-                  placeholder="Enter your email"
-                  className="input input-bordered w-full px-4 rounded-xl"
-                />
-              </div>
-
-              {/* Password */}
-              <div className="mt-5">
-                <label className="font-semibold mb-2 block">Password</label>
-
-                <input
-                  type="password"
-                  placeholder="Create password"
-                  className="input input-bordered w-full px-4 rounded-xl"
-                />
-              </div>
-
-              {/* Confirm Password */}
-              <div className="mt-5">
-                <label className="font-semibold mb-2 block">
-                  Confirm Password
-                </label>
-
-                <input
-                  type="password"
-                  placeholder="Confirm password"
-                  className="input input-bordered w-full px-4 rounded-xl"
-                />
-              </div>
-
-              {/* Register Button */}
-              <button className="btn btn-primary w-full rounded-xl mt-6 text-lg">
-                Register
-              </button>
-
-              {/* Divider */}
-              <div className="divider my-6">OR</div>
-
-              {/* Google Register */}
-              <button className="btn btn-outline w-full rounded-xl">
-                <FaGoogle className="text-red-500" />
-                Continue With Google
-              </button>
-
-              {/* Login Link */}
-              <p className="text-center mt-6">
-                Already have an account?
-                <Link
-                  href="/login"
-                  className="text-primary hover:underline font-bold ml-2"
-                >
-                  Login
-                </Link>
-              </p>
-            </div>
+          {/* register form  */}
+          <div>
+            <RegisterForm></RegisterForm>
           </div>
         </div>
       </div>
