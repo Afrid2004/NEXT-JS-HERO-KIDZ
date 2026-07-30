@@ -22,20 +22,16 @@ export const authOptions = {
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
     }),
   ],
-
   callbacks: {
     async signIn({ user, account }) {
       const userCollection = await dbConnect(collections.USERS);
-
       const isExistUser = await userCollection.findOne({
         email: user.email,
         provider: account.provider,
       });
-
       if (isExistUser) {
         return true;
       }
-
       const newUser = {
         provider: account.provider,
         name: user.name,
@@ -43,10 +39,29 @@ export const authOptions = {
         image: user.image,
         role: "user",
       };
-
       const result = await userCollection.insertOne(newUser);
-
       return result.acknowledged;
+    },
+    async session({ session, user, token }) {
+      if (token) {
+        session.role = token?.role;
+        session.email = token?.email;
+      }
+      return session;
+    },
+    async jwt({ token, user, account, profile, isNewUser }) {
+      if (user) {
+        if (account.provider === "google") {
+          const userCollection = await dbConnect(collections.USERS);
+          const dbuser = await userCollection.findOne({ email: user.email });
+          token.role = dbuser?.role;
+          token.email = dbuser?.email;
+        } else {
+          token.role = user?.role;
+          token.email = user?.email;
+        }
+      }
+      return token;
     },
   },
 };

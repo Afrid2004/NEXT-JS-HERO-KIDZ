@@ -39,7 +39,7 @@ const LoginForm = () => {
       const res = await signIn("credentials", {
         email: user.email,
         password: user.password,
-        // redirect: false,
+        redirect: false,
         callbackUrl: callback,
       });
       if (!res.ok) {
@@ -47,8 +47,7 @@ const LoginForm = () => {
         return;
       }
       // login success
-      router.push("/");
-      router.refresh();
+      router.push(callback);
     } catch (error) {
       setErr("Something went wrong");
     } finally {
