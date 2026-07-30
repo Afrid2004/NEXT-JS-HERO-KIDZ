@@ -3,6 +3,7 @@ import Link from "next/link";
 import { FaStar } from "react-icons/fa";
 import { FiArrowRight } from "react-icons/fi";
 import { IoCartOutline } from "react-icons/io5";
+import AddToCartBtn from "../Buttons/AddToCartBtn";
 
 const ProductCard = ({ product }) => {
   const { title, image, price, discount, ratings, reviews } = product;
@@ -55,11 +56,7 @@ const ProductCard = ({ product }) => {
 
         {/* Button */}
         <div className="mt-5 space-y-3">
-          <button className="btn btn-primary w-full rounded-xl text-white">
-            <IoCartOutline size={20} />
-            Add to Cart
-          </button>
-
+          <AddToCartBtn product={product}></AddToCartBtn>
           <Link
             href={`/products/${product._id}`}
             className="btn btn-outline btn-secondary w-full rounded-xl"

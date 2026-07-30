@@ -46,6 +46,7 @@ export const authOptions = {
       if (token) {
         session.role = token?.role;
         session.email = token?.email;
+        session.provider = token?.provider;
       }
       return session;
     },
@@ -53,12 +54,17 @@ export const authOptions = {
       if (user) {
         if (account.provider === "google") {
           const userCollection = await dbConnect(collections.USERS);
-          const dbuser = await userCollection.findOne({ email: user.email });
+          const dbuser = await userCollection.findOne({
+            email: user.email,
+            provider: account.provider,
+          });
           token.role = dbuser?.role;
           token.email = dbuser?.email;
+          token.provider = dbuser?.provider;
         } else {
           token.role = user?.role;
           token.email = user?.email;
+          token.provider = account?.provider;
         }
       }
       return token;
