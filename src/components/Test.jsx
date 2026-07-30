@@ -4,12 +4,7 @@ import React from "react";
 
 const Test = () => {
   const session = useSession();
-  return (
-    <div>
-      Test
-      {JSON.stringify(session)}
-    </div>
-  );
+  return <div>Client: {JSON.stringify(session)}</div>;
 };
 
 export default Test;

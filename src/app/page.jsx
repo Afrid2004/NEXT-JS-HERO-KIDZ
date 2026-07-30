@@ -11,7 +11,7 @@ export default async function Home() {
   return (
     <div className="min-h-[calc(100vh-370px)]">
       <Test></Test>
-      {JSON.stringify(session)}
+      Server: {JSON.stringify(session)}
       <section>
         {/* home  */}
         <Banner></Banner>
