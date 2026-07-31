@@ -45,7 +45,7 @@ const AddToCartBtn = ({ product }) => {
     <button
       disabled={session.status === "loading"}
       onClick={addToCart}
-      className="btn btn-primary btn-lg"
+      className="btn btn-primary btn-lg w-full"
     >
       <IoCartOutline size={22} />
       {loading ? "Adding..." : "Add To Cart"}

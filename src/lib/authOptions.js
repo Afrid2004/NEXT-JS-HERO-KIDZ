@@ -47,6 +47,7 @@ export const authOptions = {
         session.role = token?.role;
         session.email = token?.email;
         session.provider = token?.provider;
+        session.id = token.id;
       }
       return session;
     },
@@ -58,10 +59,12 @@ export const authOptions = {
             email: user.email,
             provider: account.provider,
           });
+          token.id = dbuser._id.toString();
           token.role = dbuser?.role;
           token.email = dbuser?.email;
           token.provider = dbuser?.provider;
         } else {
+          token.id = user?.id;
           token.role = user?.role;
           token.email = user?.email;
           token.provider = account?.provider;

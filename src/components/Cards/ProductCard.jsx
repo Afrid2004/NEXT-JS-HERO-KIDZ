@@ -56,7 +56,9 @@ const ProductCard = ({ product }) => {
 
         {/* Button */}
         <div className="mt-5 space-y-3">
-          <AddToCartBtn product={product}></AddToCartBtn>
+          <AddToCartBtn
+            product={{ ...product, _id: product._id.toString() }}
+          ></AddToCartBtn>
           <Link
             href={`/products/${product._id}`}
             className="btn btn-outline btn-secondary w-full rounded-xl"

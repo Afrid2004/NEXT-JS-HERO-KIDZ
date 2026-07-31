@@ -13,8 +13,7 @@ export const handleAddToCart = async (productId) => {
   const user = session.user;
   const query = {
     productId: new ObjectId(productId),
-    email: user.email,
-    provider: session.provider,
+    userId: session.id,
   };
   const isExistCart = await cartsCollection.findOne(query);
   // if already exist then increament
@@ -27,7 +26,6 @@ export const handleAddToCart = async (productId) => {
     const result = await cartsCollection.updateOne(query, updatedDoc);
     return { success: Boolean(result.modifiedCount) };
   }
-
   const product = await productsCollection.findOne({
     _id: new ObjectId(productId),
   });
@@ -39,9 +37,21 @@ export const handleAddToCart = async (productId) => {
     image: product.image,
     price: product.price - (product.price * product.discount) / 100,
     username: user?.name,
-    provider: session.provider,
+    userId: session.id,
   };
-
   const result = await cartsCollection.insertOne(cartData);
   return { success: result.acknowledged };
+};
+
+// get cart item by user id
+export const getCartByUserId = async () => {
+  const session = (await getServerSession(authOptions)) || {};
+  const user = session?.user;
+  const cartsCollection = await dbConnect(collections.CARTS);
+  if (!user) return [];
+  const query = {
+    userId: session.id,
+  };
+  const product = await cartsCollection.find(query).toArray();
+  return product;
 };

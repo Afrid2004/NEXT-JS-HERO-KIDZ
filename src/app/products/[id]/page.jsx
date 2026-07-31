@@ -200,7 +200,9 @@ const ProductDetailsPage = async ({ params }) => {
 
           {/* Buttons */}
           <div className="grid md:grid-cols-2 gap-4 mt-8">
-            <AddToCartBtn product={product}></AddToCartBtn>
+            <AddToCartBtn
+              product={{ ...product, _id: product._id.toString() }}
+            ></AddToCartBtn>
             <button className="btn btn-secondary btn-lg text-white">
               <MdBolt size={22} />
               Buy Now
