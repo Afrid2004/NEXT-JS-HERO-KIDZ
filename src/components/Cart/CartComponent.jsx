@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
 import CartCard from "../Cards/CartCard";
 
 const CartComponent = ({ cartItems = [] }) => {
@@ -19,6 +19,16 @@ const CartComponent = ({ cartItems = [] }) => {
       return prev.filter((item) => item._id != id);
     });
   };
+
+  const calcTotalItem = useMemo(
+    () => items.reduce((sum, item) => sum + item.quantity, 0),
+    [items],
+  );
+
+  const calcSubTotal = useMemo(
+    () => items.reduce((sum, item) => sum + item.quantity * item.price, 0),
+    [items],
+  );
   return (
     <div>
       <div className="grid grid-cols-12 gap-8">
@@ -42,12 +52,12 @@ const CartComponent = ({ cartItems = [] }) => {
             <div className="space-y-3">
               <div className="flex justify-between">
                 <span>Items</span>
-                <span>3</span>
+                <span>{calcTotalItem}</span>
               </div>
 
               <div className="flex justify-between">
                 <span>Subtotal</span>
-                <span>৳ 2,622</span>
+                <span>TK. {calcSubTotal}</span>
               </div>
 
               <div className="flex justify-between">
@@ -59,7 +69,7 @@ const CartComponent = ({ cartItems = [] }) => {
 
               <div className="flex justify-between text-xl font-bold">
                 <span className="text-secondary">Total</span>
-                <span className="text-primary">৳ 2,622</span>
+                <span className="text-primary">TK. {calcSubTotal}</span>
               </div>
 
               <button className="btn btn-primary w-full mt-4">
