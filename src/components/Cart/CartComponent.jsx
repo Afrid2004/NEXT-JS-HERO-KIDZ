@@ -2,6 +2,7 @@
 
 import React, { useMemo, useState } from "react";
 import CartCard from "../Cards/CartCard";
+import Link from "next/link";
 
 const CartComponent = ({ cartItems = [] }) => {
   const [items, setItems] = useState(cartItems);
@@ -44,37 +45,51 @@ const CartComponent = ({ cartItems = [] }) => {
         </div>
 
         <div className="col-span-12 lg:col-span-4">
-          <div className="bg-base-100 border border-base-300 rounded-2xl p-6 sticky top-24">
-            <h2 className="text-2xl font-bold mb-5 text-secondary">
+          <div className="bg-base-100 border border-base-300 rounded-2xl p-6 sticky top-10">
+            <h2 className="text-2xl font-bold text-secondary mb-6">
               Order Summary
             </h2>
 
-            <div className="space-y-3">
-              <div className="flex justify-between">
-                <span>Items</span>
-                <span>{calcTotalItem}</span>
+            <div className="space-y-4">
+              <div className="flex justify-between text-base">
+                <span className="text-gray-500">Total Items</span>
+                <span className="font-semibold">{calcTotalItem}</span>
               </div>
 
-              <div className="flex justify-between">
-                <span>Subtotal</span>
-                <span>TK. {calcSubTotal}</span>
+              <div className="flex justify-between text-base">
+                <span className="text-gray-500">Subtotal</span>
+                <span className="font-semibold">
+                  TK. {calcSubTotal.toLocaleString()}
+                </span>
               </div>
 
-              <div className="flex justify-between">
-                <span>Shipping</span>
-                <span>Free</span>
+              <div className="flex justify-between text-base">
+                <span className="text-gray-500">Shipping</span>
+                <span className="text-green-600 font-semibold">Free</span>
               </div>
 
-              <div className="divider"></div>
+              <div className="divider my-2"></div>
 
-              <div className="flex justify-between text-xl font-bold">
-                <span className="text-secondary">Total</span>
-                <span className="text-primary">TK. {calcSubTotal}</span>
+              {/* Total */}
+              <div className="flex justify-between items-center">
+                <span className="text-xl font-bold text-secondary">Total</span>
+
+                <span className="text-2xl font-bold text-primary">
+                  TK. {calcSubTotal.toLocaleString()}
+                </span>
               </div>
 
-              <button className="btn btn-primary w-full mt-4">
+              <button className="btn btn-primary btn-lg w-full mt-3">
                 Proceed To Checkout
               </button>
+
+              <Link href={"/products"} className="btn btn-outline w-full">
+                Continue Shopping
+              </Link>
+
+              <p className="text-center text-xs text-gray-500 mt-2">
+                Secure checkout • SSL Protected
+              </p>
             </div>
           </div>
         </div>

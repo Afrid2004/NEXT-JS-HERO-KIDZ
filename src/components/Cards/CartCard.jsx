@@ -87,16 +87,16 @@ const CartCard = ({ cart, updateQuentity, removeItem }) => {
   };
 
   return (
-    <div className="bg-base-100 border border-base-300 rounded-2xl p-4 hover:shadow-sm  transition-all">
-      <div className="flex flex-col md:flex-row gap-5">
+    <div className="bg-base-100 border border-base-300 rounded-2xl p-5 hover:shadow-lg transition-all duration-300">
+      <div className="flex flex-col sm:flex-row gap-5">
         {/* Product Image */}
-        <div className="w-full md:w-36 h-36 rounded-xl overflow-hidden bg-base-200 flex items-center justify-center">
+        <div className="w-full sm:w-36 h-36 rounded-xl overflow-hidden bg-base-200 flex items-center justify-center shrink-0">
           <Image
             src={cart.image}
             alt={cart.title}
             width={140}
             height={140}
-            className="object-contain w-full h-full"
+            className="object-contain w-full h-full p-2 rounded-2xl"
           />
         </div>
 
@@ -107,15 +107,22 @@ const CartCard = ({ cart, updateQuentity, removeItem }) => {
               {cart.title}
             </h2>
 
-            <p className="text-primary text-2xl font-bold mt-3">
-              ৳ {cart.price}
-            </p>
+            <div className="mt-3 space-y-1">
+              <p className="text-primary text-2xl font-bold">৳ {cart.price}</p>
+
+              <p className="text-sm text-gray-500">
+                Subtotal:
+                <span className="font-semibold text-secondary ml-1">
+                  TK. {(cart.price * cart.quantity).toLocaleString()}
+                </span>
+              </p>
+            </div>
           </div>
 
           {/* Bottom */}
-          <div className="flex flex-wrap items-center justify-between gap-4 mt-6">
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mt-6">
             {/* Quantity */}
-            <div className="flex items-center border border-base-300 rounded-xl overflow-hidden">
+            <div className="flex items-center border border-base-300 rounded-xl overflow-hidden w-fit">
               <button
                 onClick={() => decreaseItem(cart)}
                 className="w-11 h-11 flex items-center justify-center hover:bg-base-200 transition"
@@ -135,12 +142,12 @@ const CartCard = ({ cart, updateQuentity, removeItem }) => {
               </button>
             </div>
 
-            {/* Delete */}
+            {/* Remove */}
             <button
               onClick={() => handleDelete(cart._id)}
-              className="btn btn-error btn-outline hover:text-white rounded-xl"
+              className="btn btn-error btn-outline rounded-xl hover:text-white"
             >
-              <FiTrash2 size={18} />
+              <FiTrash2 />
               Remove
             </button>
           </div>
