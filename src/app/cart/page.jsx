@@ -9,7 +9,6 @@ const CartPage = async () => {
     ...item,
     _id: item._id.toString(),
   }));
-  console.log(cartItems);
   return (
     <div>
       <div className="py-10">

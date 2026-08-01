@@ -1,9 +1,39 @@
 "use client";
 
+import { deleteCart } from "@/actions/server/Cart";
 import Image from "next/image";
 import { FiMinus, FiPlus, FiTrash2 } from "react-icons/fi";
+import Swal from "sweetalert2";
 
 const CartCard = ({ cart }) => {
+  const handleDelete = async (id) => {
+    await Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#000000",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        const result = await deleteCart(id);
+        if (result.success) {
+          await Swal.fire({
+            title: "Deleted!",
+            text: "Your cart has been deleted.",
+            icon: "success",
+          });
+        } else {
+          await Swal.fire({
+            title: "Oops!",
+            text: "Failed to delete cart.",
+            icon: "error",
+          });
+        }
+      }
+    });
+  };
   return (
     <div className="bg-base-100 border border-base-300 rounded-2xl p-4 hover:shadow-sm  transition-all">
       <div className="flex flex-col md:flex-row gap-5">
@@ -48,7 +78,10 @@ const CartCard = ({ cart }) => {
             </div>
 
             {/* Delete */}
-            <button className="btn btn-error btn-outline hover:text-white rounded-xl">
+            <button
+              onClick={() => handleDelete(cart._id)}
+              className="btn btn-error btn-outline hover:text-white rounded-xl"
+            >
               <FiTrash2 size={18} />
               Remove
             </button>
