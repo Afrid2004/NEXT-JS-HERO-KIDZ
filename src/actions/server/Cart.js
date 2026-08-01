@@ -71,8 +71,55 @@ export const deleteCart = async (id) => {
     userId: session.id,
   };
   const result = await cartsCollection.deleteOne(query);
-  if (result.deletedCount) {
-    revalidatePath("/cart");
-  }
+  // if (result.deletedCount) {
+  //   revalidatePath("/cart");
+  // }
   return { success: Boolean(result.deletedCount) };
+};
+
+// increase cart quantity
+export const increaseCartItem = async (id, quantity) => {
+  const session = (await getServerSession(authOptions)) || {};
+  const user = session?.user;
+  if (!user) return { success: false };
+  const cartsCollection = await dbConnect(collections.CARTS);
+  if (quantity >= 10) {
+    return { success: false, message: "You cannot add 10 items at a time!" };
+  }
+  const query = {
+    _id: new ObjectId(id),
+    userId: session.id,
+  };
+  const updatedDoc = {
+    $inc: {
+      quantity: 1,
+    },
+  };
+  const result = await cartsCollection.updateOne(query, updatedDoc);
+  return { success: Boolean(result.modifiedCount) };
+};
+
+// decrease cart quantity
+export const decreaseCartItem = async (id, quantity) => {
+  const session = (await getServerSession(authOptions)) || {};
+  const user = session?.user;
+  if (!user) return { success: false };
+  const cartsCollection = await dbConnect(collections.CARTS);
+  if (quantity <= 1) {
+    return {
+      success: false,
+      message: "Quantity cant be empty",
+    };
+  }
+  const query = {
+    _id: new ObjectId(id),
+    userId: session.id,
+  };
+  const updatedDoc = {
+    $inc: {
+      quantity: -1,
+    },
+  };
+  const result = await cartsCollection.updateOne(query, updatedDoc);
+  return { success: Boolean(result.modifiedCount) };
 };

@@ -1,11 +1,15 @@
 "use client";
 
-import { deleteCart } from "@/actions/server/Cart";
+import {
+  decreaseCartItem,
+  deleteCart,
+  increaseCartItem,
+} from "@/actions/server/Cart";
 import Image from "next/image";
 import { FiMinus, FiPlus, FiTrash2 } from "react-icons/fi";
 import Swal from "sweetalert2";
 
-const CartCard = ({ cart }) => {
+const CartCard = ({ cart, updateQuentity, removeItem }) => {
   const handleDelete = async (id) => {
     await Swal.fire({
       title: "Are you sure?",
@@ -24,6 +28,7 @@ const CartCard = ({ cart }) => {
             text: "Your cart has been deleted.",
             icon: "success",
           });
+          removeItem(id);
         } else {
           await Swal.fire({
             title: "Oops!",
@@ -34,6 +39,53 @@ const CartCard = ({ cart }) => {
       }
     });
   };
+
+  const increaseItem = async (cart) => {
+    try {
+      const res = await increaseCartItem(cart._id, cart.quantity);
+      if (res.success) {
+        updateQuentity(cart._id, cart.quantity + 1);
+        console.log("Increased");
+      } else {
+        await Swal.fire({
+          title: "Oops!",
+          text: res.message || "Fail to increase!",
+          icon: "error",
+        });
+      }
+    } catch (error) {
+      await Swal.fire({
+        title: "Oops!",
+        text: "Something went wrong!",
+        icon: "error",
+      });
+      console.log(error);
+    }
+  };
+
+  const decreaseItem = async (cart) => {
+    try {
+      const res = await decreaseCartItem(cart._id, cart.quantity);
+      if (res.success) {
+        console.log("Decreased");
+        updateQuentity(cart._id, cart.quantity - 1);
+      } else {
+        await Swal.fire({
+          title: "Oops!",
+          text: res.message || "Fail to decrease!",
+          icon: "error",
+        });
+      }
+    } catch (error) {
+      await Swal.fire({
+        title: "Oops!",
+        text: "Something went wrong!",
+        icon: "error",
+      });
+      console.log(error);
+    }
+  };
+
   return (
     <div className="bg-base-100 border border-base-300 rounded-2xl p-4 hover:shadow-sm  transition-all">
       <div className="flex flex-col md:flex-row gap-5">
@@ -64,7 +116,10 @@ const CartCard = ({ cart }) => {
           <div className="flex flex-wrap items-center justify-between gap-4 mt-6">
             {/* Quantity */}
             <div className="flex items-center border border-base-300 rounded-xl overflow-hidden">
-              <button className="w-11 h-11 flex items-center justify-center hover:bg-base-200 transition">
+              <button
+                onClick={() => decreaseItem(cart)}
+                className="w-11 h-11 flex items-center justify-center hover:bg-base-200 transition"
+              >
                 <FiMinus size={18} />
               </button>
 
@@ -72,7 +127,10 @@ const CartCard = ({ cart }) => {
                 {cart.quantity}
               </div>
 
-              <button className="w-11 h-11 flex items-center justify-center hover:bg-base-200 transition">
+              <button
+                onClick={() => increaseItem(cart)}
+                className="w-11 h-11 flex items-center justify-center hover:bg-base-200 transition"
+              >
                 <FiPlus size={18} />
               </button>
             </div>
