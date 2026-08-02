@@ -5,6 +5,7 @@ import { getServerSession } from "next-auth";
 import { clearCart, getCartByUserId } from "./Cart";
 import { collections, dbConnect } from "@/lib/dbConnect";
 import { ObjectId } from "mongodb";
+import { sendOrderMail } from "@/lib/sendOrderMail";
 
 export const createOrder = async (payloadData) => {
   const session = (await getServerSession(authOptions)) || {};
@@ -45,6 +46,7 @@ export const createOrder = async (payloadData) => {
   const result = await OrderCollections.insertOne(newOrderData);
   if (Boolean(result.insertedId)) {
     await clearCart();
+    await sendOrderMail(newOrderData);
   }
   return { success: Boolean(result.insertedId) };
 };
