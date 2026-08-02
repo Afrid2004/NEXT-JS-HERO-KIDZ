@@ -13,7 +13,7 @@ export const handleAddToCart = async (productId) => {
   if (!session?.user) return { success: false };
   const user = session.user;
   const query = {
-    productId: new ObjectId(productId),
+    productId: productId,
     userId: session.id,
   };
   const isExistCart = await cartsCollection.findOne(query);
@@ -32,7 +32,7 @@ export const handleAddToCart = async (productId) => {
   });
   const cartData = {
     title: product.title,
-    productId: product?._id,
+    productId: product?._id.toString(),
     email: user?.email,
     quantity: 1,
     image: product.image,
@@ -122,4 +122,16 @@ export const decreaseCartItem = async (id, quantity) => {
   };
   const result = await cartsCollection.updateOne(query, updatedDoc);
   return { success: Boolean(result.modifiedCount) };
+};
+
+export const clearCart = async () => {
+  const session = (await getServerSession(authOptions)) || {};
+  const user = session?.user;
+  if (!user) return { success: false };
+  const cartsCollection = await dbConnect(collections.CARTS);
+  const query = {
+    userId: session.id,
+  };
+  const result = await cartsCollection.deleteMany(query);
+  return { success: Boolean(result.deletedCount) };
 };

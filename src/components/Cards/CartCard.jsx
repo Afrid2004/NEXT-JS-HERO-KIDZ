@@ -108,7 +108,9 @@ const CartCard = ({ cart, updateQuentity, removeItem }) => {
             </h2>
 
             <div className="mt-3 space-y-1">
-              <p className="text-primary text-2xl font-bold">৳ {cart.price}</p>
+              <p className="text-primary text-2xl font-bold">
+                TK. {cart.price}
+              </p>
 
               <p className="text-sm text-gray-500">
                 Subtotal:
