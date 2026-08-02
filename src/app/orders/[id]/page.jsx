@@ -60,7 +60,9 @@ const OrderDetailsPage = async ({ params }) => {
 
                     <div className="flex-1">
                       <Link href={`/products/${item?.productId?.toString()}`}>
-                        <h3 className="font-bold text-lg">{item.title}</h3>
+                        <h3 className="font-bold text-lg hover:underline">
+                          {item.title}
+                        </h3>
                       </Link>
 
                       <div className="flex flex-wrap gap-5 mt-3 text-sm text-base-content/70">

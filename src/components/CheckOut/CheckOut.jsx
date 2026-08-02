@@ -65,7 +65,7 @@ const CheckOut = ({ cartItems = [] }) => {
           text: "Order created successfully!",
           icon: "success",
         });
-        router.push("/products");
+        router.push("/orders");
       } else {
         await Swal.fire({
           title: "Failed!",

@@ -79,9 +79,12 @@ const CartComponent = ({ cartItems = [] }) => {
                 </span>
               </div>
 
-              <button className="btn btn-primary btn-lg w-full mt-3">
+              <Link
+                href={"/checkout"}
+                className="btn btn-primary btn-lg w-full mt-3"
+              >
                 Proceed To Checkout
-              </button>
+              </Link>
 
               <Link href={"/products"} className="btn btn-outline w-full">
                 Continue Shopping
