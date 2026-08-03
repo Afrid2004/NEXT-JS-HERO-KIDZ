@@ -38,7 +38,7 @@ const AddToCartBtn = ({ product }) => {
       }
     } else {
       // used callback url to redirect user previous page after logged in
-      router.push(`/login?callbackurl=${path}`);
+      router.push(`/login?callbackUrl=${path}`);
     }
   };
   return (

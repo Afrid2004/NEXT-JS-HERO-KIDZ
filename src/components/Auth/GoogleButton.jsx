@@ -5,7 +5,7 @@ import { FaGoogle } from "react-icons/fa";
 
 const GoogleButton = () => {
   const params = useSearchParams();
-  const callback = params.get("callbackurl") || "/";
+  const callback = params.get("callbackUrl") || "/";
   const handleGoogleLoginIn = async () => {
     const res = await signIn("google", {
       callbackUrl: callback,

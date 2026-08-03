@@ -8,7 +8,7 @@ import GoogleButton from "./GoogleButton";
 
 const LoginForm = () => {
   const params = useSearchParams();
-  const callback = params.get("callbackurl") || "/";
+  const callback = params.get("callbackUrl") || "/";
   const [loading, setLoading] = useState(false);
   const router = useRouter();
   const [showPassword, setShowPassword] = useState(false);
@@ -40,7 +40,7 @@ const LoginForm = () => {
         email: user.email,
         password: user.password,
         redirect: false,
-        callbackUrl: callback,
+        callbackUrl: params.get("callbackUrl") || "/",
       });
       if (res?.error) {
         setErr("Invalid email or password");
@@ -136,7 +136,7 @@ const LoginForm = () => {
           <p className="text-center mt-6">
             Don't have an account?
             <Link
-              href={`/register?callbackurl=${callback}`}
+              href={`/register?callbackUrl=${callback}`}
               className="text-primary hover:underline font-bold ml-2"
             >
               Register

@@ -1,7 +1,5 @@
 import LoginForm from "@/components/Auth/LoginForm";
 import Image from "next/image";
-import Link from "next/link";
-import { FaGoogle, FaEye } from "react-icons/fa";
 
 const LoginPage = () => {
   return (

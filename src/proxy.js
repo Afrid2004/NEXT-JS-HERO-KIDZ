@@ -18,7 +18,7 @@ export async function proxy(req) {
   // if user not logged in redirect to login
   if (!isAuthorized && isPrivateRoute) {
     return NextResponse.redirect(
-      new URL(`/login?callbackurl=${reqPath}`, req.url),
+      new URL(`/login?callbackUrl=${reqPath}`, req.url),
     );
   }
 
