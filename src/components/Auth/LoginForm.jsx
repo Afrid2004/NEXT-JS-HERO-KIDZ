@@ -42,13 +42,12 @@ const LoginForm = () => {
         redirect: false,
         callbackUrl: callback,
       });
-      console.log("signIn response:", res);
       if (res?.error) {
         setErr("Invalid email or password");
         return;
       }
       // login success
-      router.replace(callback);
+      router.push(callback);
     } catch (error) {
       setErr("Something went wrong");
     } finally {
