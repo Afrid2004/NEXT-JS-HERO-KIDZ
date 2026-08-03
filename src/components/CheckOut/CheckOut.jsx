@@ -10,6 +10,7 @@ import { useRouter } from "next/navigation";
 const CheckOut = ({ cartItems = [] }) => {
   const session = useSession();
   const router = useRouter();
+  const [loading, setLoading] = useState(false);
   const [paymentMethod, setPaymentMethod] = useState("cod");
   const totalItems = useMemo(
     () => cartItems.reduce((sum, item) => sum + item.quantity, 0),
@@ -57,6 +58,7 @@ const CheckOut = ({ cartItems = [] }) => {
       paymentMethod: form.payment.value,
       note: form.note.value,
     };
+    setLoading(true);
     try {
       const res = await createOrder(payloadData);
       if (res.success) {
@@ -80,6 +82,8 @@ const CheckOut = ({ cartItems = [] }) => {
         icon: "error",
       });
       console.log(error);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -318,9 +322,10 @@ const CheckOut = ({ cartItems = [] }) => {
 
                 <button
                   type="submit"
-                  className="btn btn-primary btn-lg rounded-xl w-full mt-6"
+                  disabled={loading}
+                  className="btn btn-primary btn-lg rounded-xl w-full mt-6 disabled:opacity-60 disabled:cursor-not-allowed"
                 >
-                  Place Order
+                  {loading ? "Placing Order..." : "Place Order"}
                 </button>
               </div>
             </div>

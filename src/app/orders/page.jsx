@@ -34,7 +34,7 @@ const OrdersPage = async () => {
           </Link>
         </div>
       ) : (
-        <div className="space-y-8">
+        <div className="grid grid-cols-1 gap-5">
           {orderItems.map((order) => (
             <OrderCard order={order} key={order._id}></OrderCard>
           ))}
