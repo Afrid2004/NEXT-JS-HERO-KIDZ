@@ -297,7 +297,7 @@ ${order.note ? `<br><br><strong>Order Note:</strong><br>${order.note}` : ""}
 <td align="center" style="padding:0 35px 40px;">
 
 <a
-href="${process.env.APP_URL}/orders/${order._id}"
+href="${process.env.NEXTAUTH_URL}/orders/${order._id}"
 style="
 display:inline-block;
 padding:16px 34px;
